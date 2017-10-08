@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_MyBatis/01_MyBatis.iml" filepath="$PROJECT_DIR$/01_MyBatis/01_MyBatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_Spring/02_Spring.iml" filepath="$PROJECT_DIR$/02_Spring/02_Spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Consult/Consult.iml" filepath="$PROJECT_DIR$/Consult/Consult.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SSM_Frame.iml" filepath="$PROJECT_DIR$/SSM_Frame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Supermarket/Supermarket.iml" filepath="$PROJECT_DIR$/Supermarket/Supermarket.iml" />
+    </modules>
+  </component>
+</project>

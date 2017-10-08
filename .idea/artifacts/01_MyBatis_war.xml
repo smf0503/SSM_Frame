@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="01_MyBatis:war">
+    <output-path>$PROJECT_DIR$/01_MyBatis/target</output-path>
+    <root id="archive" name="SSM_Frame.war">
+      <element id="artifact" artifact-name="01_MyBatis:war exploded" />
+    </root>
+  </artifact>
+</component>

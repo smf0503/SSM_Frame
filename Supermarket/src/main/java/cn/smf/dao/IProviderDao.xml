@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smf.dao.IProviderDao">
+    <!--查询所有供应商-->
+    <select id="getAllPro" resultType="Provider">
+        SELECT * FROM smbms_provider
+        <where>
+            <if test="id!=null">
+                AND id=#{id}
+            </if>
+            <if test="proName!=null">
+                AND proName LIKE '%' #{proName} '%'
+            </if>
+        </where>
+    </select>
+
+    <!--添加供应商-->
+    <insert id="addPro">
+        INSERT INTO smbms_provider(proCode,proName,proDesc,proContact,proPhone,proAddress,proFax,creationDate) VALUES(#{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},#{proAddress},#{proFax},#{creationDate})
+    </insert>
+
+    <!--修改供应商信息-->
+    <update id="updateProInfo">
+        UPDATE smbms_provider SET proCode=#{proCode},proName=#{proName},proDesc=#{proDesc},proContact=#{proContact},proPhone=#{proPhone},proAddress=#{proAddress},proFax=#{proFax} WHERE id=#{id}
+    </update>
+
+    <!--删除供应商-->
+    <delete id="delPro">
+        DELETE FROM smbms_provider WHERE id=#{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smf.dao.IBillDao">
+    <resultMap id="myBillMap" type="Bill">
+        <id property="" column="billCode"></id>
+        <result property="" column="productName"></result>
+    </resultMap>
+    <!--查询所有订单-->
+    <select id="getAllBill" resultType="Bill">
+    </select>
+
+</mapper>

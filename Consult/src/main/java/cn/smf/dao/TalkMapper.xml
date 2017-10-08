@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.smf.dao.TalkMapper" >
+  <resultMap id="BaseResultMap" type="cn.smf.entity.Talk" >
+    <id column="tid" property="tid" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="talktime" property="talktime" jdbcType="DATE" />
+    <result column="nid" property="nid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tid, content, talktime, nid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from talk
+    where tid = #{tid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from talk
+    where tid = #{tid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.smf.entity.Talk" >
+    insert into talk (tid, content, talktime, 
+      nid)
+    values (#{tid,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{talktime,jdbcType=DATE}, 
+      #{nid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.smf.entity.Talk" >
+    insert into talk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="talktime != null" >
+        talktime,
+      </if>
+      <if test="nid != null" >
+        nid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="talktime != null" >
+        #{talktime,jdbcType=DATE},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.smf.entity.Talk" >
+    update talk
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="talktime != null" >
+        talktime = #{talktime,jdbcType=DATE},
+      </if>
+      <if test="nid != null" >
+        nid = #{nid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.smf.entity.Talk" >
+    update talk
+    set content = #{content,jdbcType=VARCHAR},
+      talktime = #{talktime,jdbcType=DATE},
+      nid = #{nid,jdbcType=BIGINT}
+    where tid = #{tid,jdbcType=BIGINT}
+  </update>
+</mapper>

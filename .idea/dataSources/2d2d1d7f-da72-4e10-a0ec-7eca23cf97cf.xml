@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="y2226@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="y2226">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="bookmanager"/>
+    <schema id="4" parent="1" name="easybuy"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="leave"/>
+    <schema id="7" parent="1" name="library"/>
+    <schema id="8" parent="1" name="mysql"/>
+    <schema id="9" parent="1" name="newss2227"/>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="pets"/>
+    <schema id="12" parent="1" name="smbms"/>
+    <schema id="13" parent="1" name="test"/>
+    <table id="14" parent="2" name="news"/>
+    <table id="15" parent="2" name="student66"/>
+    <table id="16" parent="2" name="talk"/>
+    <table id="17" parent="2" name="teacher66"/>
+    <table id="18" parent="2" name="teacher_student66"/>
+    <column id="19" parent="14" name="newsid">
+      <Position>1</Position>
+      <Comment>咨讯标识 自增</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="20" parent="14" name="newstitle">
+      <Position>2</Position>
+      <Comment>咨讯标题</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="21" parent="14" name="newsContene">
+      <Position>3</Position>
+      <Comment>咨讯内容</Comment>
+      <DataType>varchar(1000)|0</DataType>
+    </column>
+    <column id="22" parent="14" name="clickCount">
+      <Position>4</Position>
+      <Comment>访问量</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <key id="23" parent="14" name="PRIMARY">
+      <ColNames>newsid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="24" parent="15" name="sid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="25" parent="15" name="sname">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+    </column>
+    <key id="26" parent="15" name="PRIMARY">
+      <ColNames>sid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="27" parent="16" name="tid">
+      <Position>1</Position>
+      <Comment>评论编号 自增</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="28" parent="16" name="content">
+      <Position>2</Position>
+      <Comment>评论内容</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="29" parent="16" name="talktime">
+      <Position>3</Position>
+      <Comment>评论时间</Comment>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="30" parent="16" name="nid">
+      <Position>4</Position>
+      <Comment>咨讯id 外键</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <key id="31" parent="16" name="PRIMARY">
+      <ColNames>tid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="32" parent="17" name="tid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="17" name="tname">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+    </column>
+    <key id="34" parent="17" name="PRIMARY">
+      <ColNames>tid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="35" parent="18" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="18" name="tid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="37" parent="18" name="sid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="38" parent="18" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
