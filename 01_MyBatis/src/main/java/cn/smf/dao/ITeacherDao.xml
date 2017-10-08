@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smf.dao.ITeacherDao">
+    <resultMap id="myTeacherMapper" type="Teacher">
+        <result column="tname" property="tname"></result>
+        <collection property="stus" ofType="Student">
+            <result property="sname" column="sname"></result>
+        </collection>
+    </resultMap>
+    <select id="getTeacherById" resultMap="myTeacherMapper">
+        SELECT tname,sname FROM teacher66,student66,teacher_student66 WHERE teacher_student66.`sid`=student66.`sid` AND teacher_student66.`tid`=teacher66.`tid` AND teacher66.`tid`=#{id}
+    </select>
+</mapper>

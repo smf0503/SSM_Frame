@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smf.dao.IResultDao">
+    <!--<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true"></cache>-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+    <sql id="columns">
+        stuno,subjectName,score,age,gradeId
+    </sql>
+    <!--DB中的Table中的FileId和java中的属性名称不一样时,就需要手工映射。主键列是id 剩余的列是result-->
+    <resultMap id="myResultMap" type="Result">
+        <id property="stuno" column="stuno"></id>
+        <result property="subjectname" column="subjectname"></result>
+    </resultMap>
+
+    <!--查询所有2-->
+    <select id="findAll" resultMap="myResultMap" useCache="true">
+        SELECT <include refid="columns"></include> FROM result
+    </select>
+
+    <!--查询所有1-->
+    <select id="findAll2" resultType="cn.smf.entity.Result">
+        SELECT * FROM result
+    </select>
+
+    <!--添加-->
+    <insert id="addResult" flushCache="false">
+        INSERT INTO result VALUES(#{stuno},#{subjectname},#{score},#{age},#{gradeId})
+    </insert>
+
+    <!--添加后返回stuno-->
+    <insert id="addResultReturnStuno">
+        INSERT INTO result VALUES(#{stuno},#{subjectname},#{score},#{age})
+        <selectKey resultType="int" keyProperty="stuno">
+            SELECT @@IDENTITY
+        </selectKey>
+    </insert>
+
+    <!--修改-->
+    <update id="editResult">
+        UPDATE result SET subjectName=#{subjectname} WHERE age=#{age}
+    </update>
+
+    <!--删除-->
+    <delete id="delResult">
+        DELETE FROM result WHERE age=#{age}
+    </delete>
+
+    <!--模糊查询-->
+    <select id="queryLike" resultType="cn.smf.entity.Result">
+        <!---->
+        SELECT * FROM result WHERE subjectName LIKE '%' #{subjectname} '%'
+        <!--客户端的查询内容连同%%符号一同发送到了服务器-->
+        <!--SELECT * FROM result WHERE subjectName LIKE '%${subjectname}%'-->
+        <!--SELECT * FROM result WHERE subjectName LIKE concat('%',#{subjectname},'%')-->
+    </select>
+
+    <!--多条件查询-->
+    <select id="termQuery" resultType="cn.smf.entity.Result">
+        SELECT * FROM result WHERE subjectName LIKE '%' #{subjectname} '%' and score>#{score}
+    </select>
+
+    <!--多条件索引号方案查询-->
+    <select id="indexNumberQuery" resultType="cn.smf.entity.Result">
+        SELECT * FROM result WHERE subjectName LIKE '%' #{0} '%' and score>#{1}
+    </select>
+
+    <!--智能标签if-->
+    <select id="findByIf" resultType="cn.smf.entity.Result">
+        SELECT * FROM result
+        <where>
+            <if test="subjectname!=null">
+                and subjectName LIKE '%' #{subjectname} '%'
+            </if>
+            <if test="score!=null">
+                and score>#{score}
+            </if>
+        </where>
+    </select>
+
+    <!--智能标签choose-->
+    <select id="findByChoose" resultType="cn.smf.entity.Result">
+        SELECT * FROM result
+        <where>
+            <choose>
+                <when test="subjectname!=null">
+                    and subjectName LIKE '%' #{subjectname} '%'
+                </when>
+                <otherwise>
+                    and 1=1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!--智能标签foreach-->
+    <select id="findByArray" resultType="cn.smf.entity.Result">
+        SELECT * FROM result
+        <where>
+            <if test="array.length>0">
+                score IN 
+                <foreach collection="array" open="(" close=")" separator="," item="myScore">
+                    #{myScore}
+                </foreach>
+            </if>
+
+        </where>
+    </select>
+
+    <!---->
+
+</mapper>

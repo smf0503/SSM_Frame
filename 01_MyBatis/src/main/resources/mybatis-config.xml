@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--让程序识别到jdbc.properties-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--修改MyBatis在运行时的行为方式-->
+    <settings>
+        <setting name="cacheEnabled" value="true"></setting>
+        <!--<setting name="autoMappingBehavior" value="NONE"/>-->
+        <!--延迟加载-->
+        <setting name="lazyLoadingEnabled" value="false"></setting>
+        <!--侵入式加载-->
+       <!-- <setting name="aggressiveLazyLoading" value="false"></setting>-->
+    </settings>
+
+    <!--类型 别名-->
+    <typeAliases>
+        <!--方式一-->
+        <!--<typeAlias type="cn.smf.entity.Result" alias="result"></typeAlias>-->
+        <!--方式二:可以将扫描包的简单类名作为类名-->
+        <package name="cn.smf.entity"></package>
+    </typeAliases>
+
+    <!--数据库环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--
+                事务管理方案：
+                JDBC：显示处理事务
+                tx
+                tx.commit();  tx.rollback();
+                需要手动的提交事务
+                取值：JDBC/MANAGED 区别
+            -->
+            <transactionManager type="JDBC"/>
+            <!--
+                ctrl+shift+/
+                POOLED：连接池
+                UNPOOLED：非连接池
+                JNDI：Java Naming ANd Directory Interface  java命名和目录接口
+            -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--关联小配置-->
+        <!--方式一-->
+        <!--<mapper resource="cn/smf/dao/IResultDao.xml"/>-->
+        <!--方式二-->
+        <package name="cn.smf.dao"></package>
+    </mappers>
+</configuration>
